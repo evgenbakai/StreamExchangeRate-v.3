@@ -53,5 +53,14 @@
         "providerId": 27 // cryptopia
       }
     ]
-  } // ETH/USDT
+  }, // ETH/USDT
+  {
+    "symbol": "BTC/JPY",
+    "providers": [
+      {
+        "mappedTo": "BTC_JPY",
+        "providerId": 31 // bitflyer
+      }
+    ]
+  }  // BTC/JPY
 ]
