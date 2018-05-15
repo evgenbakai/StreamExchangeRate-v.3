@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace StreamExchangeRate_v._3
@@ -9,11 +6,11 @@ namespace StreamExchangeRate_v._3
     abstract class RestProvider : Provider
     {
         private RestWrapper[] _restProvider;
-        private Action<string> Message;
+        private Action<string> _message;
 
-        public void Init(string[] url, string providerName)
+        protected void Init(string[] url, string providerName)
         {
-            Message = OnMessage;
+            _message = OnMessage;
             _restProvider = new RestWrapper[url.Length];
 
             for (int i = 0; i < url.Length; i++)
@@ -26,7 +23,7 @@ namespace StreamExchangeRate_v._3
         {
             foreach (var p in _restProvider)
             {
-                p.OnMessage = Message;
+                p.OnMessage = _message;
                 await p.Start();
             }
         }

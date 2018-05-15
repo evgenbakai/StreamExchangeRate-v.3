@@ -2,8 +2,7 @@
 using StreamExchangeRate_v._3.BitFlyer;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace StreamExchangeRate_v._3
@@ -12,11 +11,15 @@ namespace StreamExchangeRate_v._3
     {
         static void Main(string[] args)
         {
-            Provider p0 = new BitFlyerClient("31");
-            p0.Start();
+            List<Provider> provider_list = new List<Provider>()
+            {
+                new BitFlyerClient("31"),
+                new BinanceClient("24")
+            };
 
-            Provider p = new BinanceClient("24");
-            p.Start();
+            foreach (var p in provider_list)
+                p.Start();
+
             Console.ReadKey();
         }
     }

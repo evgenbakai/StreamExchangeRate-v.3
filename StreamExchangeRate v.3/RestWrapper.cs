@@ -17,7 +17,7 @@ namespace StreamExchangeRate_v._3
         public RestWrapper(string url, string providerName)
         {
             _url = url;
-            this._providerName = providerName;
+            _providerName = providerName;
         }
 
         public Task Start()
@@ -33,6 +33,7 @@ namespace StreamExchangeRate_v._3
 
         public void Stop()
         {
+            Console.WriteLine(L("Stop.."));
             _cancelation?.Cancel();
             _client.Dispose();
             _timer.Dispose();

@@ -2,15 +2,13 @@
 using StreamExchangeRate_v._3.ModelTicker;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace StreamExchangeRate_v._3.BitFlyer
 {
     class BitFlyerClient : RestProvider
     {
-        private string ProviderName { get; set; } = "BitFlyer";
+        protected override string ProviderName { get { return "BitFlyer"; } }
 
         public BitFlyerClient(string providerId)
         {
@@ -50,7 +48,6 @@ namespace StreamExchangeRate_v._3.BitFlyer
             ticker.BidPrice = eventData.BestBid;
             ticker.TotalTradedVolume = eventData.Volume;
 
-            // check the data has changed
             if (processTicker(ticker))
                 Console.WriteLine($"[{ProviderName}] {ticker.Symbol} : Ask = {ticker.AskPrice}  Bid = {ticker.BidPrice} Volume = {ticker.TotalTradedVolume}");
             else

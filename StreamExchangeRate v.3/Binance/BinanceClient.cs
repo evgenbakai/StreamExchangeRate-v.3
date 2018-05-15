@@ -7,7 +7,7 @@ namespace StreamExchangeRate_v._3.Binance
 {
     class BinanceClient : WebSocketProvider
     {
-        private string ProviderName { get; set; } = "Binance";
+        protected override string ProviderName { get { return "Binance"; } }
 
         public BinanceClient(string providerId)
         {

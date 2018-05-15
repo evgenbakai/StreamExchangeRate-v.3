@@ -21,7 +21,7 @@ namespace StreamExchangeRate_v._3
         public WebSocketWrapper(Uri url, string providerName)
         {
             _url = url;
-            this._providerName = providerName;
+            _providerName = providerName;
             int minute = 1000 * 60;
             _lastChanceTimer = new Timer(async x => await LastChance(x), null, minute, minute);
         }

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using StreamExchangeRate_v._3.ModelTicker;
 using StreamExchangeRate_v._3.Config;
@@ -12,6 +10,8 @@ namespace StreamExchangeRate_v._3
     public abstract class Provider : IDisposable
     {
         private TotalTicker totalTicker;
+        protected static ConcurrentDictionary<string, ProviderConfig> _mappings = new ConcurrentDictionary<string, ProviderConfig>();
+        protected string ProviderId { get; set; }
 
         public Provider(string fileConfigJson = "mappings.json")
         {
@@ -28,11 +28,8 @@ namespace StreamExchangeRate_v._3
             }
         }
 
-        protected static ConcurrentDictionary<string, ProviderConfig> _mappings = new ConcurrentDictionary<string, ProviderConfig>();
-
-        protected string ProviderId { get; set; }
-
         protected abstract void OnMessage(string data);
+        protected abstract string ProviderName { get; }
         public abstract Task Start();
         public abstract void Stop();
         public abstract void Dispose();
@@ -101,7 +98,5 @@ namespace StreamExchangeRate_v._3
 
             return changed;
         }
-
-        
     }
 }
